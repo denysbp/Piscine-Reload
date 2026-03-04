@@ -1,12 +1,7 @@
 #include <stdlib.h>
 
-int	*ft_range(int min, int max)
+void	call_malloc(int max, int min, int *range)
 {
-	int	*range;
-
-	int	i;
-
-	i = 0;
 	if (max > min)
 	{
 		range = (int *)malloc(sizeof(int) * ((max - min) + 1));
@@ -15,10 +10,26 @@ int	*ft_range(int min, int max)
 	{
 		range = (int *)malloc(sizeof(int) * ((min - max) + 1));
 	}
-	while(max != min)
+}
+
+int	*ft_range(int min, int max)
+{
+	int	*range;
+	int	i;
+
+	i = 0;
+	call_malloc(max, min, range);
+	while (max != min)
 	{
 		range[i++] = max;
-		max += (max > min) ? 1 : -1;
+		if (max > min)
+		{
+			max += 1;
+		}
+		else
+		{
+			max -= 1;
+		}
 	}
 	range[i] = max;
 	return (range);
