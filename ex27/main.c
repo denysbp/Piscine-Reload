@@ -25,7 +25,7 @@ void	fechar(int argc)
 	{
 		write(2, "File name missing.\n", 19);
 	}
-	if (argc > 2)
+	else if (argc > 2)
 	{
 		write(2, "Too many arguments.\n", 20);
 	}
@@ -35,7 +35,6 @@ int	main(int argc, char **argv)
 {
 	char	buffer[100];
 	int		fopen;
-	int		bytes_lidos;
 
 	if (argc != 2)
 	{
@@ -48,8 +47,7 @@ int	main(int argc, char **argv)
 		write(2, "Cannot read file.\n", 18);
 		return (1);
 	}
-	bytes_lidos = read (fopen, buffer, sizeof(buffer) - 1);
-	abrir(fopen, buffer, bytes_lidos);
+	abrir(fopen, buffer, sizeof(buffer));
 	close(fopen);
 	return (0);
 }
